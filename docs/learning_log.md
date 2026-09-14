@@ -4,6 +4,23 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-14] — Milestone 2: Module 2 (RAG Application)
+
+### 1. What I Learned
+- **Protocol-Driven Decoupling:** In Python, `typing.Protocol` allows structural subtyping (duck typing with static verification). By depending on `VectorStore` and `EmbeddingProvider` protocols instead of concrete SDK classes, the pipeline can run against an in-memory store for unit tests or pgvector in production without altering a single line of business logic.
+- **Chunk Offsets & Provenance:** Storing `start_char` and `end_char` alongside chunk text allows downstream evaluation engines (M5) to highlight the exact sentence in the source document where an AI hallucinated or derived a claim.
+- **Sliding Window Chunking:** Slicing text with an overlap prevents vital contextual information (like sentences spanning a chunk boundary) from being severed and lost during retrieval.
+
+### 2. Architectural Decisions
+- Implemented `Document`, `DocumentChunk`, `RetrievedDocument`, and `RagResponse` in `src/aegis/domain/models/rag.py`.
+- Built `DocumentParser` and `TextChunker` in `services/`.
+- Built `InMemoryVectorStore` using cosine similarity and `DeterministicEmbeddingProvider` in `infrastructure/`.
+- Built `RagPipeline` in `services/rag_pipeline.py`.
+- Exposed REST API endpoints `/api/v1/rag/ingest`, `/api/v1/rag/query`, and `/api/v1/rag/stats` in `src/aegis/api/routes/rag.py`.
+- Maintained 96% test coverage across 50 passing tests.
+
+---
+
 ## [2026-09-14] — Milestone 1: Module 1 (Evaluation Dataset)
 
 ### 1. What I Learned
