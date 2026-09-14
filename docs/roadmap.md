@@ -6,8 +6,8 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 
 | ID  | Module                      | Status      | Target Milestone | Notes                                           |
 | --- | --------------------------- | ----------- | ---------------- | ----------------------------------------------- |
-| —   | Project Scaffolding & Setup | IN PROGRESS | Foundation       | Git, venv, pyproject.toml, architecture layout |
-| M1  | Evaluation Dataset          | TODO        | Milestone 1      | Schemas, validation, loader, tags, rejection    |
+| —   | Project Scaffolding & Setup | DONE        | Foundation       | Git, venv, pyproject.toml, architecture layout |
+| M1  | Evaluation Dataset          | DONE        | Milestone 1      | Schemas, validation, loader, tags, rejection    |
 | M2  | RAG Application             | TODO        | Milestone 2      | Ingestion, chunking, embeddings, pgvector       |
 | M3  | Evaluation Engine           | TODO        | Milestone 3      | Core metrics (faithfulness, correctness, etc.)  |
 | M4  | Rubric System               | TODO        | Milestone 4      | Configurable grading rubrics & weights          |
