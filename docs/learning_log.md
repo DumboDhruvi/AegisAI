@@ -4,6 +4,28 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-15] — Milestone 3: Module 3 (Evaluation Engine)
+
+### 1. What I Learned
+- **Deterministic vs. LLM-as-a-Judge Trade-offs:** In enterprise TEVV (Testing, Evaluation, Verification, and Validation), running an LLM on every evaluation step is too slow and costly for rapid local unit testing or high-frequency CI (Continuous Integration). By providing deterministic token-overlap metrics (F1 score, lexical grounding, keyword relevance) alongside semantic LLM judges, we achieve sub-millisecond local test suites while still supporting deep semantic evaluation.
+- **RAG Triad Metrics:**
+  - *Faithfulness (Groundedness):* Checks whether every factual statement in the AI's answer is substantiated by the retrieved context chunks (zero hallucinations).
+  - *Correctness:* Compares the generated answer to an expected answer (ground truth) to measure factual accuracy.
+  - *Answer Relevance:* Verifies that the AI directly and fully answered the user prompt without evading or adding irrelevant fluff.
+- **Concurrent Evaluator Execution (`asyncio.gather`):** Evaluating multiple metrics sequentially multiplies response latency. By designing an asynchronous `Evaluator` protocol, `EvaluationEngine` evaluates all metrics in parallel, returning aggregated composite scores with individual diagnostic explanations.
+
+### 2. Architectural Decisions
+- Created `MetricType`, `EvaluationInput`, `MetricResult`, and `EvaluationResult` in `src/aegis/domain/models/evaluation.py`.
+- Built `Evaluator` protocol in `src/aegis/services/evaluators/base.py`.
+- Implemented `F1CorrectnessEvaluator`, `LexicalFaithfulnessEvaluator`, and `KeywordRelevanceEvaluator` in `src/aegis/services/evaluators/deterministic.py`.
+- Implemented `LlmFaithfulnessJudge`, `LlmCorrectnessJudge`, and `LlmAnswerRelevanceJudge` in `src/aegis/services/evaluators/llm_judge.py`.
+- Built `EvaluationEngine` in `src/aegis/services/evaluation_engine.py`.
+- Exposed REST API endpoints `/api/v1/evaluate/case`, `/api/v1/evaluate/batch`, and `/api/v1/evaluate/metrics` in `src/aegis/api/routes/evaluation.py`.
+- Documented architecture in [ADR-004](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-004-evaluation-engine-and-metrics.md).
+- Maintained 96% test coverage across 82 passing tests.
+
+---
+
 ## [2026-09-14] — Milestone 2: Module 2 (RAG Application)
 
 ### 1. What I Learned
