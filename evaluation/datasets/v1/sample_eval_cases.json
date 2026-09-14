@@ -1,0 +1,64 @@
+[
+  {
+    "id": "eval-rag-001",
+    "question": "What is the return window for items purchased during the holiday sale?",
+    "expected_answer": "Items purchased during the holiday sale (Nov 15 - Dec 31) can be returned until January 31st of the following year.",
+    "context": [
+      "Standard return policy allows returns within 30 days of delivery.",
+      "Holiday Exception: Items purchased between November 15 and December 31 may be returned through January 31 of the following year.",
+      "Returned items must be unused and in original packaging with receipt."
+    ],
+    "rubric": {
+      "must_include": ["January 31st", "Nov 15 - Dec 31 window"],
+      "criteria": "Response must clearly distinguish the holiday extension from the standard 30-day policy.",
+      "weight": 1.0
+    },
+    "tags": ["rag", "policy", "ecommerce", "grounding"]
+  },
+  {
+    "id": "eval-rag-002",
+    "question": "Are international shipping fees refundable if a customer returns an item?",
+    "expected_answer": "No, international shipping charges, customs duties, and import taxes are non-refundable.",
+    "context": [
+      "Domestic returns include prepaid shipping labels for eligible returns.",
+      "International shipping fees, customs duties, and brokerage taxes are strictly non-refundable upon return."
+    ],
+    "rubric": {
+      "must_include": ["non-refundable", "shipping fees or customs"],
+      "criteria": "Response must state clearly that international shipping fees are not refundable.",
+      "weight": 1.0
+    },
+    "tags": ["rag", "shipping", "finance"]
+  },
+  {
+    "id": "eval-rag-003",
+    "question": "How do I revoke an API key in AegisAI?",
+    "expected_answer": "Navigate to Settings > API Keys in the AegisAI dashboard, find the target key, and click 'Revoke'. Revocations take effect immediately across all endpoints.",
+    "context": [
+      "API keys authenticate programmatic requests to AegisAI endpoints.",
+      "To revoke a key, open Settings > API Keys, locate the specific key identifier, and select 'Revoke'.",
+      "Key invalidation is instantaneous and cannot be undone."
+    ],
+    "rubric": {
+      "must_include": ["Settings > API Keys", "Revoke", "immediate"],
+      "criteria": "Must provide correct navigation path and note immediate effect.",
+      "weight": 1.0
+    },
+    "tags": ["security", "aegis", "dashboard"]
+  },
+  {
+    "id": "eval-rag-004",
+    "question": "Can I use DeepEval metrics with local embedding models?",
+    "expected_answer": "Yes, AegisAI integrates DeepEval with pluggable embedding providers, supporting both cloud providers (OpenAI, Gemini) and local models via HuggingFace or Ollama.",
+    "context": [
+      "AegisAI evaluation engine decouples metric computation from embedding backends.",
+      "DeepEval metrics can be configured with local embeddings (HuggingFace transformers, Ollama) or cloud providers."
+    ],
+    "rubric": {
+      "must_include": ["Yes", "local embeddings or HuggingFace/Ollama"],
+      "criteria": "Response should confirm compatibility and mention local options.",
+      "weight": 1.0
+    },
+    "tags": ["deepeval", "embeddings", "architecture"]
+  }
+]
