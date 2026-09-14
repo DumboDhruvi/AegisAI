@@ -27,7 +27,7 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 ### 1. What I Learned
 - **Modern Python Packaging (`pyproject.toml`):** Setuptools 77+ deprecates `project.license = { text = "MIT" }` in favor of standard SPDX strings `license = "MIT"`.
 - **Layered Architecture in AI Systems:** Decoupling evaluation logic from HTTP frameworks (FastAPI) and storage (Postgres/pgvector) makes metrics deterministic, testable in milliseconds, and independent of infrastructure availability.
-- **Evaluation as Code:** Treating datasets, rubrics, and baselines with the same version control rigor as source code is essential for scientific reproducibility in TEVV.
+- **Evaluation as Code:** Treating datasets, rubrics, and baselines with the same version control rigor as source code is essential for scientific reproducibility in TEVV (Testing, Evaluation, Verification, and Validation).
 
 ### 2. Architectural Decisions
 - Created isolated layers: `api`, `services`, `domain`, `infrastructure`, and `core`.
