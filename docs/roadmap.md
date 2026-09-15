@@ -11,8 +11,8 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M2  | RAG Application             | DONE        | Milestone 2      | Ingestion, chunking, embeddings, vector store   |
 | M3  | Evaluation Engine           | DONE        | Milestone 3      | Core metrics (faithfulness, correctness, etc.)  |
 | M4  | Rubric System               | DONE        | Milestone 4      | Configurable grading rubrics & weights          |
-| M5  | Grounding & Hallucination   | NEXT        | Milestone 5      | Evidence attribution, hallucination detection   |
-| M6  | Robustness Testing          | TODO        | Milestone 6      | Perturbation, adversarial inputs, out-of-domain |
+| M5  | Grounding & Hallucination   | DONE        | Milestone 5      | Evidence attribution, hallucination detection   |
+| M6  | Robustness Testing          | NEXT        | Milestone 6      | Perturbation, adversarial inputs, out-of-domain |
 | M7  | Agent Evaluation            | TODO        | Milestone 7      | Tool call schema, multi-step trace verification |
 | M8  | Benchmarking                | TODO        | Milestone 8      | Model comparison & comparative benchmarks       |
 | M9  | Regression Testing          | TODO        | Milestone 9      | Baseline diffing, automated quality gates       |
@@ -26,10 +26,10 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 ## Kanban Board
 
 ### TODO
-- [ ] M5: Evidence attribution, sentence-level extraction, hallucination detection
+- [ ] M6: Perturbation engine, typos, noise, adversarial attacks, and out-of-domain evaluation
 
 ### IN PROGRESS
-- [x] M4: Rubric System (Multi-criteria evaluation, weighted score aggregation, REST API)
+- [x] M5: Grounding & Hallucination (Claim extraction, evidence attribution, polarity verification)
 
 ### BLOCKED
 *None.*
@@ -42,3 +42,4 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] M2: RAG Pipeline with parser, chunker, vector store, and API endpoints
 - [x] M3: Evaluation Engine (Faithfulness, Correctness, and Relevance)
 - [x] M4: Rubric System (Explicit Scoring Criteria & Customizable Weights)
+- [x] M5: Grounding & Hallucination Detection (Atomic Claim Verification & Evidence Attribution)
