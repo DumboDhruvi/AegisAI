@@ -11,6 +11,13 @@ from aegis.domain.models.benchmark import (
     ModelExecutionResult,
     ModelPricing,
 )
+from aegis.domain.models.data_validation import (
+    BatchValidationReport,
+    DocumentValidationResult,
+    ValidationCategory,
+    ValidationIssue,
+    ValidationSeverity,
+)
 from aegis.domain.models.evaluation import (
     EvaluationInput,
     EvaluationResult,
@@ -96,4 +103,9 @@ __all__ = [
     "RegressionComparison",
     "RegressionReport",
     "RegressionStatus",
+    "ValidationSeverity",
+    "ValidationCategory",
+    "ValidationIssue",
+    "DocumentValidationResult",
+    "BatchValidationReport",
 ]
