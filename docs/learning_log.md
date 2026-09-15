@@ -4,6 +4,21 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-15] — Milestone 5: Module 5 (Grounding & Hallucination)
+
+### 1. What I Learned
+- **Atomic Claim Decomposition vs. Coarse Faithfulness:** Document-level or passage-level faithfulness metrics often hide hallucinated details nestled inside otherwise accurate answers. In enterprise TEVV (Testing, Evaluation, Verification, and Validation), decomposing the response into discrete atomic claims and attributing each statement to supporting context exposes isolated false assertions that aggregate similarity metrics miss.
+- **Contradiction vs. Missing Grounding:** Not all ungrounded statements are equal: an *unsupported* claim is merely missing evidence from context, whereas a *contradictory* claim directly opposes or negates the source context (e.g. polar opposites or contradictory numbers). Rigorous TEVV pipelines must classify claims into three explicit states: `SUPPORTED`, `UNSUPPORTED`, and `CONTRADICTORY`.
+- **Filtering Conversational Boilerplate:** AI responses typically include conversational greetings ("Certainly! Here is your answer:") and politeness closings ("Hope this helps!"). Treating these pleasantries as factual claims produces false hallucination alerts. Pre-filtering boilerplate ensures evaluation targets only verifiable domain claims.
+
+### 2. Architectural Decisions
+- Implemented `ClaimStatus`, `ExtractedClaim`, `EvidenceCitation`, `ClaimVerification`, and `GroundingReport` in `src/aegis/domain/models/grounding.py`.
+- Built `ClaimExtractor` and `HallucinationDetector` in `src/aegis/services/hallucination_detector.py` providing deterministic lexical/polarity verification and structured LLM-as-a-judge verification.
+- Exposed REST API endpoints `/api/v1/grounding/extract-claims` and `/api/v1/grounding/verify` in `src/aegis/api/routes/grounding.py`.
+- Documented architecture in [ADR-006](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-006-grounding-and-hallucination-detection.md).
+
+---
+
 ## [2026-09-15] — Milestone 4: Module 4 (Rubric System)
 
 ### 1. What I Learned
