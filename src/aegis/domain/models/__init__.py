@@ -5,6 +5,12 @@ from aegis.domain.models.agent import (
     AgentTrajectory,
     ToolCall,
 )
+from aegis.domain.models.benchmark import (
+    BenchmarkComparisonReport,
+    ModelBenchmarkSummary,
+    ModelExecutionResult,
+    ModelPricing,
+)
 from aegis.domain.models.evaluation import (
     EvaluationInput,
     EvaluationResult,
@@ -76,4 +82,8 @@ __all__ = [
     "ToolCall",
     "AgentTrajectory",
     "AgentEvaluationResult",
+    "ModelPricing",
+    "ModelExecutionResult",
+    "ModelBenchmarkSummary",
+    "BenchmarkComparisonReport",
 ]
