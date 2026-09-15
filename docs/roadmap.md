@@ -12,8 +12,8 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M3  | Evaluation Engine           | DONE        | Milestone 3      | Core metrics (faithfulness, correctness, etc.)  |
 | M4  | Rubric System               | DONE        | Milestone 4      | Configurable grading rubrics & weights          |
 | M5  | Grounding & Hallucination   | DONE        | Milestone 5      | Evidence attribution, hallucination detection   |
-| M6  | Robustness Testing          | NEXT        | Milestone 6      | Perturbation, adversarial inputs, out-of-domain |
-| M7  | Agent Evaluation            | TODO        | Milestone 7      | Tool call schema, multi-step trace verification |
+| M6  | Robustness Testing          | DONE        | Milestone 6      | Perturbation, adversarial inputs, out-of-domain |
+| M7  | Agent Evaluation            | NEXT        | Milestone 7      | Tool call schema, multi-step trace verification |
 | M8  | Benchmarking                | TODO        | Milestone 8      | Model comparison & comparative benchmarks       |
 | M9  | Regression Testing          | TODO        | Milestone 9      | Baseline diffing, automated quality gates       |
 | M10 | Data Validation             | TODO        | Milestone 10     | Input sanitization, poison document detection   |
@@ -26,10 +26,10 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 ## Kanban Board
 
 ### TODO
-- [ ] M6: Perturbation engine, typos, noise, adversarial attacks, and out-of-domain evaluation
+- [ ] M7: Agent tool call schema, trajectory step verification, multi-step trace evaluation
 
 ### IN PROGRESS
-- [x] M5: Grounding & Hallucination (Claim extraction, evidence attribution, polarity verification)
+- [x] M6: Robustness Testing (Perturbation engine, adversarial inputs, degradation comparison)
 
 ### BLOCKED
 *None.*
@@ -43,3 +43,4 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] M3: Evaluation Engine (Faithfulness, Correctness, and Relevance)
 - [x] M4: Rubric System (Explicit Scoring Criteria & Customizable Weights)
 - [x] M5: Grounding & Hallucination Detection (Atomic Claim Verification & Evidence Attribution)
+- [x] M6: Robustness Testing (Synthetic Perturbations & Comparative Adversarial Evaluation)

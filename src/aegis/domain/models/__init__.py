@@ -25,6 +25,13 @@ from aegis.domain.models.rag import (
     RagResponse,
     RetrievedDocument,
 )
+from aegis.domain.models.robustness import (
+    PerturbationComparison,
+    PerturbationType,
+    PerturbedInput,
+    RobustnessReport,
+    RobustnessTestCase,
+)
 from aegis.domain.models.rubric import (
     DEFAULT_5_POINT_RUBRIC,
     GROUNDING_RUBRIC,
@@ -56,4 +63,9 @@ __all__ = [
     "EvidenceCitation",
     "ClaimVerification",
     "GroundingReport",
+    "PerturbationType",
+    "PerturbedInput",
+    "RobustnessTestCase",
+    "PerturbationComparison",
+    "RobustnessReport",
 ]

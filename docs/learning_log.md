@@ -4,6 +4,22 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-15] — Milestone 6: Module 6 (Robustness Testing)
+
+### 1. What I Learned
+- **Measuring Quality Degradation vs. Static Thresholds:** Testing robustness in enterprise TEVV (Testing, Evaluation, Verification, and Validation) requires evaluating degradation deltas relative to unperturbed baselines ($\Delta = S_{\text{perturbed}} - S_{\text{baseline}}$), rather than judging perturbed outputs against fixed absolute thresholds. A drop of 5% on an intentionally corrupted query demonstrates healthy fault tolerance, whereas a 40% collapse reveals severe system brittleness.
+- **Spectrum of Adversarial Perturbations:** Robustness testing encompasses both natural noise (typos, ambiguous pronouns, truncated questions) and active adversarial vectors (prompt injections, contradictory context injection, distractors). Simulating QWERTY physical keyboard adjacency produces realistic character transpositions that mimic human input errors far better than random uniform character insertion.
+- **Defending Against Distractor and Conflicting Passages:** RAG retrievers frequently pull adjacent or weakly related documents. Evaluating how an LLM handles conflicting retractions or distractor noise tests whether the model prioritizes consensus context or gets hijacked by outlier passages.
+
+### 2. Architectural Decisions
+- Implemented `PerturbationType`, `PerturbedInput`, `RobustnessTestCase`, `PerturbationComparison`, and `RobustnessReport` in `src/aegis/domain/models/robustness.py`.
+- Built `PerturbationEngine` in `src/aegis/services/perturbation_engine.py` covering all 7 perturbation categories (typos, ambiguity, missing information, conflicting documents, irrelevant documents, prompt injection, out-of-domain queries).
+- Built `RobustnessTester` in `src/aegis/services/robustness_tester.py` for automated baseline vs. perturbed evaluation and degradation ratio gating.
+- Exposed REST API endpoints `/api/v1/robustness/perturb`, `/api/v1/robustness/evaluate-case`, and `/api/v1/robustness/evaluate-suite` in `src/aegis/api/routes/robustness.py`.
+- Documented architecture in [ADR-007](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-007-robustness-testing-and-perturbation-suite.md).
+
+---
+
 ## [2026-09-15] — Milestone 5: Module 5 (Grounding & Hallucination)
 
 ### 1. What I Learned
