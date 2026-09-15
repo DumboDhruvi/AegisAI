@@ -10,8 +10,8 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M1  | Evaluation Dataset          | DONE        | Milestone 1      | Schemas, validation, loader, tags, rejection    |
 | M2  | RAG Application             | DONE        | Milestone 2      | Ingestion, chunking, embeddings, vector store   |
 | M3  | Evaluation Engine           | DONE        | Milestone 3      | Core metrics (faithfulness, correctness, etc.)  |
-| M4  | Rubric System               | NEXT        | Milestone 4      | Configurable grading rubrics & weights          |
-| M5  | Grounding & Hallucination   | TODO        | Milestone 5      | Evidence attribution, hallucination detection   |
+| M4  | Rubric System               | DONE        | Milestone 4      | Configurable grading rubrics & weights          |
+| M5  | Grounding & Hallucination   | NEXT        | Milestone 5      | Evidence attribution, hallucination detection   |
 | M6  | Robustness Testing          | TODO        | Milestone 6      | Perturbation, adversarial inputs, out-of-domain |
 | M7  | Agent Evaluation            | TODO        | Milestone 7      | Tool call schema, multi-step trace verification |
 | M8  | Benchmarking                | TODO        | Milestone 8      | Model comparison & comparative benchmarks       |
@@ -26,11 +26,10 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 ## Kanban Board
 
 ### TODO
-- [ ] M1: Evaluation Dataset schema, loader, rejection logic, and test cases
+- [ ] M5: Evidence attribution, sentence-level extraction, hallucination detection
 
 ### IN PROGRESS
-- [x] Engineering standards established ([best_practices.md](file:///home/dumbo/AI%20PROJECT/best_practices.md), [AGENTS.md](file:///home/dumbo/AI%20PROJECT/AGENTS.md))
-- [ ] Project scaffolding & toolchain verification (pytest, ruff, mypy)
+- [x] M4: Rubric System (Multi-criteria evaluation, weighted score aggregation, REST API)
 
 ### BLOCKED
 *None.*
@@ -39,3 +38,7 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] Initialized Git repository
 - [x] Created standard architectural folder layout
 - [x] Created `.env.example`, `.gitignore`, `pyproject.toml`
+- [x] M1: Evaluation Dataset schema, loader, rejection logic, and test cases
+- [x] M2: RAG Pipeline with parser, chunker, vector store, and API endpoints
+- [x] M3: Evaluation Engine (Faithfulness, Correctness, and Relevance)
+- [x] M4: Rubric System (Explicit Scoring Criteria & Customizable Weights)
