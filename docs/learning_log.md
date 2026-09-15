@@ -4,6 +4,22 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-16] — Milestone 13: Module 13 (Security & Governance)
+
+### 1. What I Learned
+- **Defense-in-Depth in TEVV (Testing, Evaluation, Verification, and Validation):** Enterprise AI evaluation cannot operate in an security vacuum. Unsanitized evaluation prompts frequently contain developer secrets (API keys, tokens) or PII (emails, SSNs, credit card numbers) that can leak into external model providers or evaluation logs. Automated regex scanning and reverse-offset token redaction protect data privacy before network transit.
+- **Role-Based Clearance Boundaries:** Multi-tenant evaluation systems require granular document classification (`PUBLIC`, `INTERNAL`, `CONFIDENTIAL`, `RESTRICTED`). Enforcing clearance hierarchy before retrieval or evaluation ensures that unauthorized actors or untrusted API clients cannot probe sensitive corporate knowledge.
+- **Compliance Auditability & Data Retention:** Enterprise compliance standards (SOC 2, ISO 27001) demand complete accountability: who accessed what resource, when, and whether access was granted. Combining structured audit logging with automated data retention policies (e.g. 30-day prompt retention, 365-day audit log retention) ensures regulatory compliance and avoids unbounded storage growth.
+
+### 2. Architectural Decisions
+- Implemented `PiiType`, `PiiDetection`, `AccessLevel`, `AuditAction`, `AuditLogEntry`, `DataRetentionPolicy`, and `SecurityScanResult` in `src/aegis/domain/models/security.py`.
+- Built `SecurityGovernanceService` in `src/aegis/services/security_governance.py` providing PII masking, prompt injection defense, RBAC authorization, and retention purging.
+- Created governance policy documentation in `docs/security/governance_policy.md`.
+- Exposed REST API endpoints `/api/v1/security/scan`, `/api/v1/security/authorize`, `/api/v1/security/audit-logs`, `/api/v1/security/retention-policy`, and `/api/v1/security/retention-purge` in `src/aegis/api/routes/security.py`.
+- Documented architecture in [ADR-014](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-014-security-governance-pii-masking-and-audit-logging.md).
+
+---
+
 ## [2026-09-16] — Milestone 12: Module 12 (Observability & Tracing)
 
 ### 1. What I Learned

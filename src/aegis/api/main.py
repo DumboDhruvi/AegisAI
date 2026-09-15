@@ -19,6 +19,7 @@ from aegis.api.routes.rag import router as rag_router
 from aegis.api.routes.regression import router as regression_router
 from aegis.api.routes.robustness import router as robustness_router
 from aegis.api.routes.rubrics import router as rubrics_router
+from aegis.api.routes.security import router as security_router
 from aegis.core.config import settings
 
 
@@ -63,6 +64,7 @@ def create_app() -> FastAPI:
     app.include_router(validation_router, prefix="/api/v1")
     app.include_router(cicd_router, prefix="/api/v1")
     app.include_router(observability_router, prefix="/api/v1")
+    app.include_router(security_router, prefix="/api/v1")
 
     return app
 
