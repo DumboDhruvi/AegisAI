@@ -4,6 +4,21 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-16] — Milestone 9: Module 9 (Regression Testing)
+
+### 1. What I Learned
+- **Regression Guardrails in TEVV (Testing, Evaluation, Verification, and Validation):** In enterprise AI systems, prompt adjustments, vector re-indexing, or hyperparameter changes often improve one metric (such as context recall) while silently causing regressions in others (such as faithfulness or answer relevance). Establishing an immutable baseline snapshot and calculating granular per-metric diffs is the bedrock of automated quality gates in production CI/CD pipelines.
+- **Configurable Drop Tolerances vs. Hard Failures:** Not all metric variations constitute unacceptable regressions. Natural variance in non-deterministic model outputs requires a sensible tolerance margin (`max_allowed_drop`, default 5%). However, missing expected metrics altogether or drops exceeding the margin must instantly trigger quality gate failures to block defective candidate releases.
+- **Dual Persistence Strategy (Memory + Disk):** Pairing an in-memory registry with atomic disk persistence enables lightning-fast unit and integration testing without disk I/O bottlenecks while ensuring reliable long-term artifact preservation across development sessions and CI builds.
+
+### 2. Architectural Decisions
+- Implemented `RegressionStatus`, `BaselineRecord`, `RegressionComparison`, and `RegressionReport` in `src/aegis/domain/models/regression.py`.
+- Implemented `BaselineStore` and `RegressionEngine` in `src/aegis/services/regression_engine.py`.
+- Built REST API endpoints `/api/v1/regression/baselines`, `/api/v1/regression/baseline/{id}`, `/api/v1/regression/baseline`, and `/api/v1/regression/compare` in `src/aegis/api/routes/regression.py`.
+- Documented architecture in [ADR-010](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-010-regression-testing-and-baseline-diffing.md).
+
+---
+
 ## [2026-09-15] — Milestone 8: Module 8 (Benchmarking)
 
 ### 1. What I Learned
