@@ -2,6 +2,23 @@
 
 This document tracks technical learnings, architectural decisions, mistakes, and ecosystem discoveries across all module iterations.
 
+## [2026-09-16] — Milestone 15: Module 15 (Cloud Deployment)
+
+### 1. What I Learned
+- **Reproducible Infrastructure in TEVV (Testing, Evaluation, Verification, and Validation):** Evaluation platforms are only as reliable as the environments they run in. Ensuring bit-for-bit parity across developer workstations, automated CI/CD pipelines, and cloud production requires strict containerization. Multi-stage Docker builds separate build dependencies (compilers, build-essential) from production runtime layers, slashing container image sizes, eliminating CVE surfaces, and accelerating cold starts in auto-scaled serverless clusters.
+- **Container Hardening & Non-Root Execution:** Enterprise security guidelines dictate that containerized AI evaluation systems must never run as root (`UID 0`). Creating a dedicated unprivileged user (`aegis:aegis`) inside both the FastAPI backend and Streamlit dashboard containers prevents container breakout vulnerabilities and complies with strict cloud security benchmarks.
+- **Microservice Orchestration on AWS Fargate:** Decoupling the high-throughput evaluation backend (`aegis-api`) from the interactive frontend (`aegis-dashboard`) and vector database (`pgvector/pgvector`) enables independent scaling, path-based routing via an Application Load Balancer (ALB), and isolated secret injection from AWS Secrets Manager directly into task definitions.
+- **Pre-Flight Cloud Deployment Verification:** Automating environment variable checks, Compose specification parsing, and ECS task definition generation through a dedicated CLI (`aegis.cli.cloud_deploy`) catches misconfigurations (such as production pointing to localhost or missing healthcheck probes) before deployment commands are executed.
+
+### 2. Architectural Decisions
+- Created multi-stage, non-root `Dockerfile` for the FastAPI backend (`aegis-api`) on port 8000 with healthcheck probe `/health`.
+- Created multi-stage, non-root `Dockerfile.dashboard` for the Streamlit UI (`aegis-dashboard`) on port 8501 with healthcheck probe `/_stcore/health`.
+- Defined `docker-compose.yml` orchestrating `postgres` (`pgvector/pgvector:pg16`), `app`, and `dashboard` with health checks, dependencies, and private bridged networking.
+- Implemented `cloud_deploy.py` CLI in `src/aegis/cli/cloud_deploy.py` for static configuration analysis and ECS task definition generation.
+- Formulated enterprise AWS architecture documentation in `docs/deployment/aws_architecture.md` and ECS task definition template in `docs/deployment/ecs_task_definition.json`.
+- Documented architecture decisions in [ADR-016](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-016-cloud-deployment-and-containerization.md).
+- Added integration test suite in `tests/integration/test_cloud_deployment.py` verifying container definitions, environment checks, and deployment CLI functionality.
+
 ---
 
 ## [2026-09-16] — Milestone 14: Module 14 (Dashboard)
