@@ -18,6 +18,13 @@ from aegis.domain.models.rag import (
     RagResponse,
     RetrievedDocument,
 )
+from aegis.domain.models.rubric import (
+    DEFAULT_5_POINT_RUBRIC,
+    GROUNDING_RUBRIC,
+    RubricCriterion,
+    RubricDefinition,
+    RubricScoreResult,
+)
 
 __all__ = [
     "EvaluationCase",
@@ -32,4 +39,9 @@ __all__ = [
     "EvaluationInput",
     "MetricResult",
     "EvaluationResult",
+    "RubricCriterion",
+    "RubricDefinition",
+    "RubricScoreResult",
+    "DEFAULT_5_POINT_RUBRIC",
+    "GROUNDING_RUBRIC",
 ]

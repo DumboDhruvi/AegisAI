@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from aegis.api.routes.datasets import router as datasets_router
 from aegis.api.routes.evaluation import router as evaluation_router
 from aegis.api.routes.rag import router as rag_router
+from aegis.api.routes.rubrics import router as rubrics_router
 from aegis.core.config import settings
 
 
@@ -45,6 +46,7 @@ def create_app() -> FastAPI:
     app.include_router(datasets_router, prefix="/api/v1")
     app.include_router(rag_router, prefix="/api/v1")
     app.include_router(evaluation_router, prefix="/api/v1")
+    app.include_router(rubrics_router, prefix="/api/v1")
 
     return app
 
