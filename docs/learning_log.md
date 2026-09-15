@@ -4,6 +4,21 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-16] — Milestone 12: Module 12 (Observability & Tracing)
+
+### 1. What I Learned
+- **Reproducibility as a Core Pillar of TEVV (Testing, Evaluation, Verification, and Validation):** When a production or CI evaluation fails (e.g. faithfulness score drops to 0.55), debugging is impossible if only the scalar metric score is logged. By recording the holistic lifecycle—request ID, exact prompt text, retrieved document chunks with similarity scores, intermediate tool calls, latency breakdowns, and token counts—evaluators can deterministically replay and diagnose the exact root cause of failure.
+- **Span-Level Execution Telemetry:** Breaking down monolithic AI latency into granular spans (retrieval vs. prompt formatting vs. model inference vs. evaluation judge) immediately isolates performance bottlenecks. For example, knowing that 90% of latency occurred in vector retrieval vs. LLM token generation guides targeted optimization.
+- **Diagnostic Replay Payloads:** Generating structured diagnostic reproduction payloads allows engineers or automated agents to fetch the exact context and prompts that triggered low faithfulness or hallucinations, enabling instant regression triage and prompt tuning.
+
+### 2. Architectural Decisions
+- Implemented `SpanType`, `TraceSpan`, `EvaluationTraceRecord`, `TraceFilter`, and `TraceSummary` in `src/aegis/domain/models/observability.py`.
+- Implemented `ObservabilityTracer` with dual persistence, query filtering, summary aggregation, and diagnostic reproduction extraction in `src/aegis/services/observability_tracer.py`.
+- Exposed REST API endpoints `/api/v1/observability/trace`, `/api/v1/observability/trace/{run_id}`, `/api/v1/observability/traces`, `/api/v1/observability/summary`, and `/api/v1/observability/reproduce/{run_id}` in `src/aegis/api/routes/observability.py`.
+- Documented architecture in [ADR-013](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-013-observability-tracing-and-diagnostic-replay.md).
+
+---
+
 ## [2026-09-16] — Milestone 11: Module 11 (CI/CD Quality Gates)
 
 ### 1. What I Learned
