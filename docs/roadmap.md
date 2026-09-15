@@ -19,17 +19,17 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M10 | Data Validation             | DONE        | Milestone 10     | Input sanitization, poison document detection   |
 | M11 | CI/CD                       | DONE        | Milestone 11     | Automated GitHub Actions evaluation pipeline    |
 | M12 | Observability               | DONE        | Milestone 12     | Traces, run IDs, metrics, latency & cost        |
-| M13 | Security & Governance       | NEXT        | Milestone 13     | Prompt injection, PII masking, access control   |
-| M14 | Dashboard                   | TODO        | Milestone 14     | Streamlit visualization & diagnostic reports    |
+| M13 | Security & Governance       | DONE        | Milestone 13     | Prompt injection, PII masking, access control   |
+| M14 | Dashboard                   | NEXT        | Milestone 14     | Streamlit visualization & diagnostic reports    |
 | M15 | Cloud Deployment            | TODO        | Milestone 15     | Docker Compose, AWS infrastructure              |
 
 ## Kanban Board
 
 ### TODO
-- [ ] M13: Security and governance, prompt injection defense, PII masking, RBAC
+- [ ] M14: Streamlit interactive evaluation dashboard, tabs, charts, diagnostic views
 
 ### IN PROGRESS
-- [x] M12: Observability tracing, run IDs, latency, tokens, cost tracking
+- [x] M13: Security and governance, prompt injection defense, PII masking, RBAC
 
 ### BLOCKED
 *None.*
@@ -50,3 +50,4 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] M10: Pre-Indexing Data Validation (Schema, Metadata, Quality, Duplicate, Staleness & Poisoning)
 - [x] M11: Automated CI/CD AI Quality Gates (PR Evaluation, Baseline Verification & GitHub Actions)
 - [x] M12: Observability & Tracing (Full Execution Telemetry, Costs, and Diagnostic Replay)
+- [x] M13: Security & Governance (PII & Secret Masking, RBAC, Retention, and Audit Logging)
