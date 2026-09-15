@@ -11,6 +11,11 @@ from aegis.domain.models.benchmark import (
     ModelExecutionResult,
     ModelPricing,
 )
+from aegis.domain.models.cicd import (
+    PipelineRunReport,
+    QualityGateEvaluation,
+    QualityGateThresholds,
+)
 from aegis.domain.models.data_validation import (
     BatchValidationReport,
     DocumentValidationResult,
@@ -108,4 +113,7 @@ __all__ = [
     "ValidationIssue",
     "DocumentValidationResult",
     "BatchValidationReport",
+    "QualityGateThresholds",
+    "QualityGateEvaluation",
+    "PipelineRunReport",
 ]

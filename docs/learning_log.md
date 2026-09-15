@@ -4,6 +4,22 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-16] — Milestone 11: Module 11 (CI/CD Quality Gates)
+
+### 1. What I Learned
+- **Shift-Left AI Reliability in TEVV (Testing, Evaluation, Verification, and Validation):** Standard continuous integration pipelines only verify deterministic syntax, static types, and unit tests. An AI application can pass all standard unit tests with flying colors while hallucinating 30% of its answers due to a prompt tweak. Integrating automated AI quality gates directly into the pull request CI workflow prevents defective generative pipelines from reaching staging or production.
+- **Configurable Quality Cutoffs:** Hardcoding thresholds directly into test files creates rigid pipelines that break during iterative model migrations. Modeling quality gate targets (`min_faithfulness = 0.90`, `min_correctness = 0.85`, `max_hallucination = 0.05`, `max_latency_p95 = 2500ms`) as first-class domain models allows teams to enforce progressive quality tightening as pipelines mature.
+- **CLI Gate Integration for Git Workflows:** Embedding evaluation runners within lightweight CLI commands (such as `python -m aegis.cli.ci_gate`) allows GitHub Actions, GitLab CI, or pre-commit hooks to execute evaluation checks and return standard shell exit codes without requiring bespoke runner plugins.
+
+### 2. Architectural Decisions
+- Implemented `QualityGateThresholds`, `QualityGateEvaluation`, and `PipelineRunReport` in `src/aegis/domain/models/cicd.py`.
+- Implemented `CicdRunner` in `src/aegis/services/cicd_runner.py` and CLI entrypoint in `src/aegis/cli/ci_gate.py`.
+- Exposed REST API endpoints `/api/v1/cicd/evaluate-gates`, `/api/v1/cicd/run-pipeline-check`, and `/api/v1/cicd/default-thresholds` in `src/aegis/api/routes/cicd.py`.
+- Configured GitHub Actions workflow in `.github/workflows/ci.yml`.
+- Documented architecture in [ADR-012](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-012-automated-cicd-ai-quality-gates.md).
+
+---
+
 ## [2026-09-16] — Milestone 10: Module 10 (Data Validation)
 
 ### 1. What I Learned
