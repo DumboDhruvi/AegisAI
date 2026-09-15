@@ -1,5 +1,10 @@
 """Domain models export."""
 
+from aegis.domain.models.agent import (
+    AgentEvaluationResult,
+    AgentTrajectory,
+    ToolCall,
+)
 from aegis.domain.models.evaluation import (
     EvaluationInput,
     EvaluationResult,
@@ -68,4 +73,7 @@ __all__ = [
     "RobustnessTestCase",
     "PerturbationComparison",
     "RobustnessReport",
+    "ToolCall",
+    "AgentTrajectory",
+    "AgentEvaluationResult",
 ]

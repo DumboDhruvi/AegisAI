@@ -4,6 +4,22 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-15] — Milestone 7: Module 7 (Agent Evaluation)
+
+### 1. What I Learned
+- **Trajectory-Level Evaluation vs. Single-Turn Q&A:** Evaluating multi-step autonomous agents in enterprise TEVV (Testing, Evaluation, Verification, and Validation) introduces challenges absent from single-turn RAG. An agent might reach the correct answer by accident after spinning in redundant loops, or pick the wrong tool and fail gracefully. Decomposing trajectory evaluation into orthogonal facets (tool selection precision/recall, parameter validation, sequence alignment, efficiency, and task completion) provides actionable root-cause diagnostics.
+- **Sequence Alignment via Longest Common Subsequence (LCS):** Strict exact-match string comparisons on tool call traces fail when agents introduce benign intermediate checks (e.g. logging or verifying a cache). By computing the Longest Common Subsequence (LCS) against expected sequences, the evaluator rewards proper relative ordering while remaining resilient to non-critical variances.
+- **Efficiency Penalties and Looping Detection:** Autonomous agents frequently suffer from cyclic tool invocation (e.g., executing the exact same search query or database lookup repeatedly when confused). Tracking invocation signatures (`tool_name`, sorted `arguments`) flags wasteful duplicate calls and applies targeted efficiency penalties.
+
+### 2. Architectural Decisions
+- Implemented `ToolCall`, `AgentTrajectory`, and `AgentEvaluationResult` in `src/aegis/domain/models/agent.py`.
+- Built `MockAgentToolRegistry` in `src/aegis/services/agent_evaluator.py` supporting `search`, `calculator`, `database`, and `web_search`.
+- Built `AgentTrajectoryEvaluator` scoring selection, arguments, sequence, efficiency, and task completion.
+- Exposed REST API endpoints `/api/v1/agent/evaluate-trajectory` and `/api/v1/agent/simulate-and-evaluate` in `src/aegis/api/routes/agent.py`.
+- Documented architecture in [ADR-008](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-008-agent-trajectory-and-tool-call-evaluation.md).
+
+---
+
 ## [2026-09-15] — Milestone 6: Module 6 (Robustness Testing)
 
 ### 1. What I Learned
