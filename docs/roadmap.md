@@ -21,15 +21,15 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M12 | Observability               | DONE        | Milestone 12     | Traces, run IDs, metrics, latency & cost        |
 | M13 | Security & Governance       | DONE        | Milestone 13     | Prompt injection, PII masking, access control   |
 | M14 | Dashboard                   | DONE        | Milestone 14     | Streamlit visualization & diagnostic reports    |
-| M15 | Cloud Deployment            | NEXT        | Milestone 15     | Docker Compose, AWS infrastructure              |
+| M15 | Cloud Deployment            | DONE        | Milestone 15     | Docker Compose, AWS ECS Fargate, ALB, Task Defs |
 
 ## Kanban Board
 
 ### TODO
-- [ ] M15: Docker Compose containerization, multi-stage Dockerfiles, AWS ECS/EC2 architecture
+*All 15 planned modules are implemented and verified.*
 
 ### IN PROGRESS
-- [x] M14: Streamlit interactive evaluation dashboard, tabs, charts, diagnostic views
+*All planned modules completed.*
 
 ### BLOCKED
 *None.*
@@ -52,3 +52,4 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] M12: Observability & Tracing (Full Execution Telemetry, Costs, and Diagnostic Replay)
 - [x] M13: Security & Governance (PII & Secret Masking, RBAC, Retention, and Audit Logging)
 - [x] M14: Interactive Multi-Tab Evaluation Dashboard (Streamlit Overview, Runs, Failures & Benchmarks)
+- [x] M15: Cloud Deployment & Containerization (Docker Compose, Multi-Stage Dockerfiles, AWS ECS Fargate & ALB)

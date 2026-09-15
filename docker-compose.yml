@@ -1,0 +1,79 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: aegis-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-aegis_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aegis_password}
+      POSTGRES_DB: ${POSTGRES_DB:-aegis_db}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aegis_user} -d ${POSTGRES_DB:-aegis_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aegis-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aegis-api
+    restart: unless-stopped
+    ports:
+      - "${AEGIS_PORT:-8000}:8000"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-aegis_user}:${POSTGRES_PASSWORD:-aegis_password}@postgres:5432/${POSTGRES_DB:-aegis_db}
+      - AEGIS_ENV=production
+      - AEGIS_LOG_LEVEL=INFO
+      - AEGIS_PORT=8000
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - aegis-network
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: aegis-dashboard
+    restart: unless-stopped
+    ports:
+      - "${DASHBOARD_PORT:-8501}:8501"
+    environment:
+      - AEGIS_API_URL=http://app:8000
+      - AEGIS_ENV=production
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+    networks:
+      - aegis-network
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  aegis-network:
+    driver: bridge
