@@ -16,8 +16,8 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M7  | Agent Evaluation            | DONE        | Milestone 7      | Tool call schema, multi-step trace verification |
 | M8  | Benchmarking                | DONE        | Milestone 8      | Model comparison & comparative benchmarks       |
 | M9  | Regression Testing          | DONE        | Milestone 9      | Baseline diffing, automated quality gates       |
-| M10 | Data Validation             | NEXT        | Milestone 10     | Input sanitization, poison document detection   |
-| M11 | CI/CD                       | TODO        | Milestone 11     | Automated GitHub Actions evaluation pipeline    |
+| M10 | Data Validation             | DONE        | Milestone 10     | Input sanitization, poison document detection   |
+| M11 | CI/CD                       | NEXT        | Milestone 11     | Automated GitHub Actions evaluation pipeline    |
 | M12 | Observability               | TODO        | Milestone 12     | Traces, run IDs, metrics, latency & cost        |
 | M13 | Security & Governance       | TODO        | Milestone 13     | Prompt injection, PII masking, access control   |
 | M14 | Dashboard                   | TODO        | Milestone 14     | Streamlit visualization & diagnostic reports    |
@@ -26,10 +26,10 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 ## Kanban Board
 
 ### TODO
-- [ ] M10: Data validation, schema verification, poisoned document and duplicate detection
+- [ ] M11: CI/CD workflow, automated GitHub Actions pipeline, quality gates
 
 ### IN PROGRESS
-- [x] M9: Baseline storage, regression diffing engine, automated quality gates
+- [x] M10: Data validation, schema verification, poisoned document and duplicate detection
 
 ### BLOCKED
 *None.*
@@ -47,3 +47,4 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] M7: Agent Evaluation (Multi-Step Tool Trace & Efficiency Verification)
 - [x] M8: Multi-Model Comparative Benchmarking (Quality, Latency, Tokens, and Cost Analysis)
 - [x] M9: Regression Testing & Baseline Diffing (Automated Quality Gates & Tolerance Margins)
+- [x] M10: Pre-Indexing Data Validation (Schema, Metadata, Quality, Duplicate, Staleness & Poisoning)
