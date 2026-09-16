@@ -9,8 +9,8 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | —   | Project Scaffolding & Setup | DONE        | Foundation       | Git, venv, pyproject.toml, architecture layout |
 | M1  | Evaluation Dataset          | DONE        | Milestone 1      | Schemas, validation, loader, tags, rejection    |
 | M2  | RAG Application             | DONE        | Milestone 2      | Ingestion, chunking, embeddings, vector store   |
-| M3  | Evaluation Engine           | TODO        | Milestone 3      | Core metrics (faithfulness, correctness, etc.)  |
-| M4  | Rubric System               | TODO        | Milestone 4      | Configurable grading rubrics & weights          |
+| M3  | Evaluation Engine           | DONE        | Milestone 3      | Core metrics (faithfulness, correctness, etc.)  |
+| M4  | Rubric System               | NEXT        | Milestone 4      | Configurable grading rubrics & weights          |
 | M5  | Grounding & Hallucination   | TODO        | Milestone 5      | Evidence attribution, hallucination detection   |
 | M6  | Robustness Testing          | TODO        | Milestone 6      | Perturbation, adversarial inputs, out-of-domain |
 | M7  | Agent Evaluation            | TODO        | Milestone 7      | Tool call schema, multi-step trace verification |
