@@ -7,6 +7,7 @@ from typing import Any
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from aegis.api.routes.agent import router as agent_router
 from aegis.api.routes.datasets import router as datasets_router
 from aegis.api.routes.evaluation import router as evaluation_router
 from aegis.api.routes.grounding import router as grounding_router
@@ -51,6 +52,7 @@ def create_app() -> FastAPI:
     app.include_router(rubrics_router, prefix="/api/v1")
     app.include_router(grounding_router, prefix="/api/v1")
     app.include_router(robustness_router, prefix="/api/v1")
+    app.include_router(agent_router, prefix="/api/v1")
 
     return app
 
