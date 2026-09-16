@@ -4,6 +4,22 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-15] — Milestone 4: Module 4 (Rubric System)
+
+### 1. What I Learned
+- **Multi-Criteria Evaluation vs. Single-Metric Scoring:** In real-world enterprise AI evaluation (TEVV: Testing, Evaluation, Verification, and Validation), pass/fail thresholds on a single dimension (e.g. lexical overlap) fail to capture production requirements where answers must simultaneously be accurate, brand-aligned in tone, concise, and safe. Multi-criteria rubrics allow defining explicit scoring dimensions with varying weights and granular score-level descriptions.
+- **Normalized Weighted Aggregation:** By normalizing raw criteria scores against their respective scales ($[S_{\min}, S_{\max}] \to [0.0, 1.0]$) and weighting each dimension proportional to total rubric weight ($\frac{w_i}{\sum w}$), composite scores remain stable and bounded in $[0.0, 1.0]$ regardless of heterogeneous criterion scales (e.g. mixing 1–5 scales with 0–10 scales).
+- **Single-Prompt Multi-Criteria LLM Judging:** Scoring multiple rubric dimensions in individual LLM calls multiplies latency and token cost linearly. Formulating the prompt to return structured JSON containing all criteria scores simultaneously reduces latency by 75%+ while providing holistic context to the LLM evaluator.
+
+### 2. Architectural Decisions
+- Created `RubricCriterion`, `RubricDefinition`, and `RubricScoreResult` in `src/aegis/domain/models/rubric.py`.
+- Built `RubricEngine` in `src/aegis/services/rubric_engine.py` with predefined rubric templates (`DEFAULT_5_POINT_RUBRIC`, `GROUNDING_RUBRIC`) and deterministic fallback evaluation when running offline or in CI/CD without API keys.
+- Exposed REST API endpoints `/api/v1/rubrics`, `/api/v1/rubrics/{id}`, and `/api/v1/rubrics/evaluate` in `src/aegis/api/routes/rubrics.py`.
+- Documented architecture in [ADR-005](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-005-rubric-engine-and-criteria-scoring.md).
+- Maintained 95% test coverage across 104 passing unit and integration tests.
+
+---
+
 ## [2026-09-15] — Milestone 3: Module 3 (Evaluation Engine)
 
 ### 1. What I Learned
