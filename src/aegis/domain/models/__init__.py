@@ -36,6 +36,12 @@ from aegis.domain.models.rag import (
     RagResponse,
     RetrievedDocument,
 )
+from aegis.domain.models.regression import (
+    BaselineRecord,
+    RegressionComparison,
+    RegressionReport,
+    RegressionStatus,
+)
 from aegis.domain.models.robustness import (
     PerturbationComparison,
     PerturbationType,
@@ -86,4 +92,8 @@ __all__ = [
     "ModelExecutionResult",
     "ModelBenchmarkSummary",
     "BenchmarkComparisonReport",
+    "BaselineRecord",
+    "RegressionComparison",
+    "RegressionReport",
+    "RegressionStatus",
 ]

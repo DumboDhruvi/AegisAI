@@ -15,8 +15,8 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M6  | Robustness Testing          | DONE        | Milestone 6      | Perturbation, adversarial inputs, out-of-domain |
 | M7  | Agent Evaluation            | DONE        | Milestone 7      | Tool call schema, multi-step trace verification |
 | M8  | Benchmarking                | DONE        | Milestone 8      | Model comparison & comparative benchmarks       |
-| M9  | Regression Testing          | NEXT        | Milestone 9      | Baseline diffing, automated quality gates       |
-| M10 | Data Validation             | TODO        | Milestone 10     | Input sanitization, poison document detection   |
+| M9  | Regression Testing          | DONE        | Milestone 9      | Baseline diffing, automated quality gates       |
+| M10 | Data Validation             | NEXT        | Milestone 10     | Input sanitization, poison document detection   |
 | M11 | CI/CD                       | TODO        | Milestone 11     | Automated GitHub Actions evaluation pipeline    |
 | M12 | Observability               | TODO        | Milestone 12     | Traces, run IDs, metrics, latency & cost        |
 | M13 | Security & Governance       | TODO        | Milestone 13     | Prompt injection, PII masking, access control   |
@@ -26,10 +26,10 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 ## Kanban Board
 
 ### TODO
-- [ ] M9: Baseline storage, regression diffing engine, automated quality gates
+- [ ] M10: Data validation, schema verification, poisoned document and duplicate detection
 
 ### IN PROGRESS
-- [x] M8: Comparative Benchmarking (Accuracy, faithfulness, relevance, hallucination, latency, tokens, cost)
+- [x] M9: Baseline storage, regression diffing engine, automated quality gates
 
 ### BLOCKED
 *None.*
@@ -46,3 +46,4 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] M6: Robustness Testing (Synthetic Perturbations & Comparative Adversarial Evaluation)
 - [x] M7: Agent Evaluation (Multi-Step Tool Trace & Efficiency Verification)
 - [x] M8: Multi-Model Comparative Benchmarking (Quality, Latency, Tokens, and Cost Analysis)
+- [x] M9: Regression Testing & Baseline Diffing (Automated Quality Gates & Tolerance Margins)
