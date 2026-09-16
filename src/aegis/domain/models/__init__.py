@@ -75,6 +75,15 @@ from aegis.domain.models.rubric import (
     RubricDefinition,
     RubricScoreResult,
 )
+from aegis.domain.models.security import (
+    AccessLevel,
+    AuditAction,
+    AuditLogEntry,
+    DataRetentionPolicy,
+    PiiDetection,
+    PiiType,
+    SecurityScanResult,
+)
 
 __all__ = [
     "EvaluationCase",
@@ -128,4 +137,11 @@ __all__ = [
     "EvaluationTraceRecord",
     "TraceFilter",
     "TraceSummary",
+    "PiiType",
+    "PiiDetection",
+    "AccessLevel",
+    "AuditAction",
+    "AuditLogEntry",
+    "DataRetentionPolicy",
+    "SecurityScanResult",
 ]
