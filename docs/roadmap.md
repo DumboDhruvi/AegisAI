@@ -18,18 +18,18 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M9  | Regression Testing          | DONE        | Milestone 9      | Baseline diffing, automated quality gates       |
 | M10 | Data Validation             | DONE        | Milestone 10     | Input sanitization, poison document detection   |
 | M11 | CI/CD                       | DONE        | Milestone 11     | Automated GitHub Actions evaluation pipeline    |
-| M12 | Observability               | NEXT        | Milestone 12     | Traces, run IDs, metrics, latency & cost        |
-| M13 | Security & Governance       | TODO        | Milestone 13     | Prompt injection, PII masking, access control   |
+| M12 | Observability               | DONE        | Milestone 12     | Traces, run IDs, metrics, latency & cost        |
+| M13 | Security & Governance       | NEXT        | Milestone 13     | Prompt injection, PII masking, access control   |
 | M14 | Dashboard                   | TODO        | Milestone 14     | Streamlit visualization & diagnostic reports    |
 | M15 | Cloud Deployment            | TODO        | Milestone 15     | Docker Compose, AWS infrastructure              |
 
 ## Kanban Board
 
 ### TODO
-- [ ] M12: Observability tracing, run IDs, latency, tokens, cost tracking
+- [ ] M13: Security and governance, prompt injection defense, PII masking, RBAC
 
 ### IN PROGRESS
-- [x] M11: CI/CD workflow, automated GitHub Actions pipeline, quality gates
+- [x] M12: Observability tracing, run IDs, latency, tokens, cost tracking
 
 ### BLOCKED
 *None.*
@@ -49,3 +49,4 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] M9: Regression Testing & Baseline Diffing (Automated Quality Gates & Tolerance Margins)
 - [x] M10: Pre-Indexing Data Validation (Schema, Metadata, Quality, Duplicate, Staleness & Poisoning)
 - [x] M11: Automated CI/CD AI Quality Gates (PR Evaluation, Baseline Verification & GitHub Actions)
+- [x] M12: Observability & Tracing (Full Execution Telemetry, Costs, and Diagnostic Replay)

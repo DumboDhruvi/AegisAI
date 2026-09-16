@@ -42,6 +42,13 @@ from aegis.domain.models.grounding import (
     ExtractedClaim,
     GroundingReport,
 )
+from aegis.domain.models.observability import (
+    EvaluationTraceRecord,
+    SpanType,
+    TraceFilter,
+    TraceSpan,
+    TraceSummary,
+)
 from aegis.domain.models.rag import (
     Document,
     DocumentChunk,
@@ -116,4 +123,9 @@ __all__ = [
     "QualityGateThresholds",
     "QualityGateEvaluation",
     "PipelineRunReport",
+    "SpanType",
+    "TraceSpan",
+    "EvaluationTraceRecord",
+    "TraceFilter",
+    "TraceSummary",
 ]
