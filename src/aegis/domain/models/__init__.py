@@ -12,6 +12,13 @@ from aegis.domain.models.evaluation_case import (
     EvaluationDataset,
     RejectedCase,
 )
+from aegis.domain.models.grounding import (
+    ClaimStatus,
+    ClaimVerification,
+    EvidenceCitation,
+    ExtractedClaim,
+    GroundingReport,
+)
 from aegis.domain.models.rag import (
     Document,
     DocumentChunk,
@@ -44,4 +51,9 @@ __all__ = [
     "RubricScoreResult",
     "DEFAULT_5_POINT_RUBRIC",
     "GROUNDING_RUBRIC",
+    "ClaimStatus",
+    "ExtractedClaim",
+    "EvidenceCitation",
+    "ClaimVerification",
+    "GroundingReport",
 ]
