@@ -4,6 +4,21 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-16] — Milestone 14: Module 14 (Dashboard)
+
+### 1. What I Learned
+- **Closing the Feedback Loop in TEVV (Testing, Evaluation, Verification, and Validation):** Having sophisticated evaluation algorithms is insufficient if evaluation reports are buried in terminal logs or remote CI artifacts. A centralized dashboard visualizes the platform's multi-dimensional reliability posture (faithfulness, correctness, relevance, robustness, hallucination rate) and provides accessible failure triage for machine learning engineers, product managers, and safety auditors alike.
+- **Dedicated Diagnostic Tabs vs. Overwhelming Dashboards:** Enterprise evaluation spans single-turn RAG, multi-agent trajectories, multi-model benchmarks, and baseline diffs. Organizing insights into seven focused tabs (`Overview`, `Runs`, `Failed Tests`, `Models`, `Benchmarks`, `Agents`, `Regression`) prevents cognitive overload while providing deep drill-down capabilities into failed prompts, retrieved chunks, and regression deltas.
+- **Separation of Presentation and Data Service:** Directly coupling Streamlit rendering to database queries or live API calls makes UI components brittle and untestable. Establishing a `DashboardDataService` abstraction allows unit tests to thoroughly verify data transformations and mock UI rendering without spinning up an interactive browser process.
+
+### 2. Architectural Decisions
+- Implemented `DashboardOverview` and `DashboardDataService` in `src/aegis/services/dashboard_data.py`.
+- Built interactive multi-tab Streamlit application in `src/aegis/dashboard/app.py`.
+- Added `streamlit>=1.35.0` to project dependencies in `pyproject.toml`.
+- Documented architecture in [ADR-015](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-015-interactive-evaluation-dashboard-architecture.md).
+
+---
+
 ## [2026-09-16] — Milestone 13: Module 13 (Security & Governance)
 
 ### 1. What I Learned

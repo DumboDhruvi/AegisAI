@@ -20,16 +20,16 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 | M11 | CI/CD                       | DONE        | Milestone 11     | Automated GitHub Actions evaluation pipeline    |
 | M12 | Observability               | DONE        | Milestone 12     | Traces, run IDs, metrics, latency & cost        |
 | M13 | Security & Governance       | DONE        | Milestone 13     | Prompt injection, PII masking, access control   |
-| M14 | Dashboard                   | NEXT        | Milestone 14     | Streamlit visualization & diagnostic reports    |
-| M15 | Cloud Deployment            | TODO        | Milestone 15     | Docker Compose, AWS infrastructure              |
+| M14 | Dashboard                   | DONE        | Milestone 14     | Streamlit visualization & diagnostic reports    |
+| M15 | Cloud Deployment            | NEXT        | Milestone 15     | Docker Compose, AWS infrastructure              |
 
 ## Kanban Board
 
 ### TODO
-- [ ] M14: Streamlit interactive evaluation dashboard, tabs, charts, diagnostic views
+- [ ] M15: Docker Compose containerization, multi-stage Dockerfiles, AWS ECS/EC2 architecture
 
 ### IN PROGRESS
-- [x] M13: Security and governance, prompt injection defense, PII masking, RBAC
+- [x] M14: Streamlit interactive evaluation dashboard, tabs, charts, diagnostic views
 
 ### BLOCKED
 *None.*
@@ -51,3 +51,4 @@ This roadmap tracks implementation progress for the 15 sequential modules define
 - [x] M11: Automated CI/CD AI Quality Gates (PR Evaluation, Baseline Verification & GitHub Actions)
 - [x] M12: Observability & Tracing (Full Execution Telemetry, Costs, and Diagnostic Replay)
 - [x] M13: Security & Governance (PII & Secret Masking, RBAC, Retention, and Audit Logging)
+- [x] M14: Interactive Multi-Tab Evaluation Dashboard (Streamlit Overview, Runs, Failures & Benchmarks)
