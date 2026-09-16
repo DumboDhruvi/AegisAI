@@ -4,6 +4,21 @@ This document tracks technical learnings, architectural decisions, mistakes, and
 
 ---
 
+## [2026-09-15] — Milestone 8: Module 8 (Benchmarking)
+
+### 1. What I Learned
+- **Pareto-Optimal Trade-Offs (Quality vs. Cost & Latency):** In enterprise TEVV (Testing, Evaluation, Verification, and Validation), picking the model with the highest absolute accuracy score is rarely optimal if that model costs 20x more or responds 5x slower. Multi-dimensional benchmarking that measures accuracy, faithfulness, relevance, and hallucination alongside token counts, latency (mean and P95), and financial cost enables teams to identify the Pareto frontier (e.g. models delivering 96% of the quality at 10% of the cost).
+- **Standardized Multi-Model Evaluation Harness:** Running benchmarks requires holding the test dataset strictly identical across models while varying only the inference backend. Decoupling the benchmarking orchestrator from specific vendor SDKs via uniform callable protocols or precomputed response mappings allows apples-to-apples comparisons between proprietary and open-source models.
+- **P95 Latency Criticality:** Mean latency hides long tail outliers. In production systems, a model with a 300ms average but a 4.5-second P95 latency causes unpredictable user experience timeouts. Tracking both mean and 95th percentile latency is essential for production sizing.
+
+### 2. Architectural Decisions
+- Implemented `ModelPricing`, `ModelExecutionResult`, `ModelBenchmarkSummary`, and `BenchmarkComparisonReport` in `src/aegis/domain/models/benchmark.py`.
+- Built `BenchmarkingService` in `src/aegis/services/benchmarking_service.py` with default pricing catalog, token estimation, quality aggregation, and automated winner/trade-off selection.
+- Exposed REST API endpoints `/api/v1/benchmark/models` and `/api/v1/benchmark/run` in `src/aegis/api/routes/benchmark.py`.
+- Documented architecture in [ADR-009](file:///home/dumbo/AI%20PROJECT/docs/adr/ADR-009-multi-model-comparative-benchmarking.md).
+
+---
+
 ## [2026-09-15] — Milestone 7: Module 7 (Agent Evaluation)
 
 ### 1. What I Learned
